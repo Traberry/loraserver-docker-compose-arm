@@ -1,4 +1,4 @@
-# LoRa Server Docker setup
+# LoRaServer Project Docker setup for ARM
 
 This repository contains a skeleton to setup the [LoRa Server](https://www.loraserver.io)
 project using [docker-compose](https://docs.docker.com/compose/).
