@@ -1,0 +1,23 @@
+# See https://www.loraserver.io/lora-app-server/install/config/ for a full
+# configuration example and documentation.
+
+[postgresql]
+dsn="postgres://loraserver_as:loraserver_as@postgresql/loraserver_as?sslmode=disable"
+
+[redis]
+url="redis://redis:6379"
+
+[application_server.integration.mqtt]
+server="tcp://mosquitto:1883"
+
+[application_server.api]
+public_host="appserver:8001"
+
+[join_server]
+bind="0.0.0.0:8003"
+
+[application_server.external_api]
+bind="0.0.0.0:8080"
+tls_cert="/etc/lora-app-server/appserver_externalapi.crt"
+tls_key="/etc/lora-app-server/appserver_externalapi.key"
+jwt_secret="verysecret"

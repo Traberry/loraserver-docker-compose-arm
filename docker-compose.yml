@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  loraserver:
+    image: traberry/armloraserver:v0.1
+    volumes:
+      - ./configuration/loraserver:/etc/loraserver
+
+  appserver:
+    image: ceticasbl/loraappserver:rpi
+    ports:
+      - 8080:8080
+    volumes:
+      - ./configuration/lora-app-server:/etc/lora-app-server
+
+  gatewaybridge:
+    image: ceticasbl/gatewaybridge:rpi
+    ports:
+      - 1700:1700/udp
+    volumes:
+      - ./configuration/lora-gateway-bridge:/etc/lora-gateway-bridge
+
+  postgresql:
+    image: postgres:9.6-alpine
+    volumes:
+      - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
+      - postgresqldata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:4-alpine
+    volumes:
+      - redisdata:/data
+
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+
+volumes:
+  postgresqldata:
+  redisdata:
